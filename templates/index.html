@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>Student Performance Prediction</h1>
+        <p class="subtitle">Enter student details to predict performance grade.</p>
+
+        <form method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" step="any" required value="{{ input_data.get('age', '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select name="gender" required>
+                        <option value="">Select</option>
+                        <option value="male" {% if input_data.get('gender') == 'male' %}selected{% endif %}>Male</option>
+                        <option value="female" {% if input_data.get('gender') == 'female' %}selected{% endif %}>Female</option>
+                        <option value="other" {% if input_data.get('gender') == 'other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>School Type</label>
+                    <select name="school_type" required>
+                        <option value="">Select</option>
+                        <option value="public" {% if input_data.get('school_type') == 'public' %}selected{% endif %}>Public</option>
+                        <option value="private" {% if input_data.get('school_type') == 'private' %}selected{% endif %}>Private</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Parent Education</label>
+                    <select name="parent_education" required>
+                        <option value="">Select</option>
+                        <option value="no formal" {% if input_data.get('parent_education') == 'no formal' %}selected{% endif %}>No Formal</option>
+                        <option value="high school" {% if input_data.get('parent_education') == 'high school' %}selected{% endif %}>High School</option>
+                        <option value="diploma" {% if input_data.get('parent_education') == 'diploma' %}selected{% endif %}>Diploma</option>
+                        <option value="graduate" {% if input_data.get('parent_education') == 'graduate' %}selected{% endif %}>Graduate</option>
+                        <option value="post graduate" {% if input_data.get('parent_education') == 'post graduate' %}selected{% endif %}>Post Graduate</option>
+                        <option value="phd" {% if input_data.get('parent_education') == 'phd' %}selected{% endif %}>PhD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Study Hours</label>
+                    <input type="number" name="study_hours" step="any" required value="{{ input_data.get('study_hours', '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Attendance</label>
+                    <input type="number" name="attendance_percentage" step="any" required value="{{ input_data.get('attendance', '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Internet Access</label>
+                    <select name="internet_access" required>
+                        <option value="">Select</option>
+                        <option value="yes" {% if input_data.get('internet_access') == 'yes' %}selected{% endif %}>Yes</option>
+                        <option value="no" {% if input_data.get('internet_access') == 'no' %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Travel Time</label>
+                    <select name="travel_time" required>
+                        <option value="">Select</option>
+                        <option value="<15 min" {% if input_data.get('travel_time') == '<15 min' %}selected{% endif %}>&lt;15 min</option>
+                        <option value="15-30 min" {% if input_data.get('travel_time') == '15-30 min' %}selected{% endif %}>15-30 min</option>
+                        <option value="30-60 min" {% if input_data.get('travel_time') == '30-60 min' %}selected{% endif %}>30-60 min</option>
+                        <option value=">60 min" {% if input_data.get('travel_time') == '>60 min' %}selected{% endif %}>&gt;60 min</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Extra Activities</label>
+                    <select name="extra_activities" required>
+                        <option value="">Select</option>
+                        <option value="yes" {% if input_data.get('extra_activities') == 'yes' %}selected{% endif %}>Yes</option>
+                        <option value="no" {% if input_data.get('extra_activities') == 'no' %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Study Method</label>
+                    <select name="study_method" required>
+                        <option value="">Select</option>
+                        <option value="notes" {% if input_data.get('study_method') == 'notes' %}selected{% endif %}>Notes</option>
+                        <option value="textbook" {% if input_data.get('study_method') == 'textbook' %}selected{% endif %}>Textbook</option>
+                        <option value="coaching" {% if input_data.get('study_method') == 'coaching' %}selected{% endif %}>Coaching</option>
+                        <option value="group study" {% if input_data.get('study_method') == 'group study' %}selected{% endif %}>Group Study</option>
+                        <option value="mixed" {% if input_data.get('study_method') == 'mixed' %}selected{% endif %}>Mixed</option>
+                        <option value="online video" {% if input_data.get('study_method') == 'online video' %}selected{% endif %}>Online Video</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Math Score</label>
+                    <input type="number" name="math_score" step="any" required value="{{ input_data.get('math_score', '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Science Score</label>
+                    <input type="number" name="science_score" step="any" required value="{{ input_data.get('science_score', '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label>English Score</label>
+                    <input type="number" name="english_score" step="any" required value="{{ input_data.get('english_score', '') }}">
+                </div>
+            </div>
+
+            <button type="submit">Predict Performance</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+            <h2>Prediction: {{ prediction }}</h2>
+            {% if confidence is not none %}
+                <p>Confidence: {{ confidence }}%</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
