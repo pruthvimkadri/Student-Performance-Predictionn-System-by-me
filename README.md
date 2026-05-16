@@ -29,8 +29,11 @@ This project predicts student final grades using machine learning.
 ## Model Used
 Random Forest Classifier
 
-## How to Run
+## Screenshots
+<img width="980" height="476" alt="image" src="https://github.com/user-attachments/assets/89754a75-58cd-45d2-b9b7-bce339ba2c6e" />
+<img width="982" height="88" alt="image" src="https://github.com/user-attachments/assets/8adc8d6e-5aef-41c5-8894-c664e96f6561" />
 
+## How to Run
 ```bash
 pip install -r requirements.txt
 python app.py
